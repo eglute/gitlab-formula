@@ -34,7 +34,7 @@ reconfigure:
     - user: root
     - group: postfix
     - pattern: ^myhostname =.*
-    - repl: myhostname = {{ salt['pillar.get']('gitlab:hostname') }}
+    - repl: myhostname = {{ salt['pillar.get']('gitlab:gitlab_hostname') }}
 
 /etc/gitlab/gitlab.rb:
   file.replace:
