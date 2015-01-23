@@ -1,6 +1,6 @@
 wget_deb:
   cmd.run:
-    - name: wget https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.6.2-omnibus.5.3.0.ci.1-1_amd64.deb
+    - name: wget https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.7.0-omnibus.5.4.0.ci-1_amd64.deb
     - user: root
     - group: root
     - cwd: /tmp
@@ -16,7 +16,7 @@ postfix:
 
 install_gitlab:
   cmd.run:
-    - name: dpkg -i gitlab_7.6.2-omnibus.5.3.0.ci.1-1_amd64.deb
+    - name: dpkg -i gitlab_7.7.0-omnibus.5.4.0.ci-1_amd64.deb
     - user: root
     - group: root 
     - cwd: /tmp
