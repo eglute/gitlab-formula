@@ -35,6 +35,13 @@ reconfigure:
     - group: postfix
     - pattern: ^myhostname =.*
     - repl: myhostname = {{ salt['pillar.get']('gitlab:gitlab_hostname') }}
+/etc/postfix/main.cf_1:
+  file.replace:
+    - name: /etc/postfix/main.cf
+    - user: root
+    - group: postfix
+    - pattern: ^mydestination =.*
+    - repl: mydestination = {{ salt['pillar.get']('gitlab:gitlab_hostname') }}
 
 /etc/gitlab/gitlab.rb:
   file.replace:
@@ -43,3 +50,10 @@ reconfigure:
     - group: root
     - pattern: ^# gitlab_rails\[\'gitlab_email_from\'\].*
     - repl: gitlab_rails['gitlab_email_from'] = {{ salt['pillar.get']('gitlab:gitlab_from_email') }} 
+    
+reconfigure_2:
+  cmd.run:
+    - name: gitlab-ctl reconfigure
+    - user: root
+    - group: root
+    - cwd: /tmp
